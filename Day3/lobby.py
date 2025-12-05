@@ -1,45 +1,56 @@
-# from pathlib import Path
+#############################
 
-# def find_max_joltage(bank):
-#     """
-#     Find the maximum joltage from a bank by choosing exactly two batteries.
-#     The joltage is formed by concatenating the two chosen digits.
-#     We need to find the pair that produces the largest two-digit number.
-#     """
-#     max_joltage = 0
+# Part One 
+
+#############################
+from pathlib import Path
+
+def find_max_joltage(bank):
+    """
+    Find the maximum joltage from a bank by choosing exactly two batteries.
+    The joltage is formed by concatenating the two chosen digits.
+    We need to find the pair that produces the largest two-digit number.
+    """
+    max_joltage = 0
     
-#     # Try all pairs of positions (i, j) where i < j
-#     # This preserves the order of batteries (cannot rearrange)
-#     for i in range(len(bank)):
-#         for j in range(i + 1, len(bank)):
-#             # Form the number by concatenating digits at positions i and j
-#             joltage = int(bank[i] + bank[j])
-#             max_joltage = max(max_joltage, joltage)
+    # Try all pairs of positions (i, j) where i < j
+    # This preserves the order of batteries (cannot rearrange)
+    for i in range(len(bank)):
+        for j in range(i + 1, len(bank)):
+            # Form the number by concatenating digits at positions i and j
+            joltage = int(bank[i] + bank[j])
+            max_joltage = max(max_joltage, joltage)
     
-#     return max_joltage
+    return max_joltage
 
-# def solve_lobby(banks):
-#     """
-#     Calculate the total output joltage from all battery banks.
-#     """
-#     total_joltage = 0
+def solve_lobby(banks):
+    """
+    Calculate the total output joltage from all battery banks.
+    """
+    total_joltage = 0
     
-#     for bank in banks:
-#         max_joltage = find_max_joltage(bank)
-#         total_joltage += max_joltage
+    for bank in banks:
+        max_joltage = find_max_joltage(bank)
+        total_joltage += max_joltage
     
-#     return total_joltage
+    return total_joltage
 
-# # Read input file
-# script_dir = Path(__file__).parent
-# input_path = script_dir / 'input.txt'
+# Read input file
+script_dir = Path(__file__).parent
+input_path = script_dir / 'input.txt'
 
-# with open(input_path, 'r') as f:
-#     banks = [line.strip() for line in f if line.strip()]
+with open(input_path, 'r') as f:
+    banks = [line.strip() for line in f if line.strip()]
 
-# # Solve the puzzle
-# answer = solve_lobby(banks)
-# print(f"Total output joltage: {answer}")
+# Solve the puzzle
+answer = solve_lobby(banks)
+print(f"Total output joltage: {answer}")
+
+#############################
+
+# Part Two
+
+#############################
 
 from pathlib import Path
 
