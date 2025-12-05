@@ -1,54 +1,66 @@
-# from pathlib import Path
+###############################################
 
-# def is_fresh(ingredient_id, fresh_ranges):
-#     """
-#     Check if an ingredient ID is fresh by checking if it falls into any range.
-#     Ranges are inclusive, and an ID is fresh if it's in ANY range.
-#     """
-#     for start, end in fresh_ranges:
-#         if start <= ingredient_id <= end:
-#             return True
-#     return False
+## Part One
 
-# def count_fresh_ingredients(database_text):
-#     """
-#     Parse the database and count how many available ingredients are fresh.
-#     """
-#     lines = database_text.strip().split('\n')
-    
-#     # Find the blank line that separates ranges from available IDs
-#     blank_line_index = lines.index('')
-    
-#     # Parse fresh ID ranges
-#     fresh_ranges = []
-#     for i in range(blank_line_index):
-#         start, end = map(int, lines[i].split('-'))
-#         fresh_ranges.append((start, end))
-    
-#     # Parse available ingredient IDs
-#     available_ids = []
-#     for i in range(blank_line_index + 1, len(lines)):
-#         if lines[i].strip():
-#             available_ids.append(int(lines[i].strip()))
-    
-#     # Count fresh ingredients
-#     fresh_count = 0
-#     for ingredient_id in available_ids:
-#         if is_fresh(ingredient_id, fresh_ranges):
-#             fresh_count += 1
-    
-#     return fresh_count
+###############################################
+from pathlib import Path
 
-# # Read input file
-# script_dir = Path(__file__).parent
-# input_path = script_dir / 'input.txt'
+def is_fresh(ingredient_id, fresh_ranges):
+    """
+    Check if an ingredient ID is fresh by checking if it falls into any range.
+    Ranges are inclusive, and an ID is fresh if it's in ANY range.
+    """
+    for start, end in fresh_ranges:
+        if start <= ingredient_id <= end:
+            return True
+    return False
 
-# with open(input_path, 'r') as f:
-#     database_text = f.read()
+def count_fresh_ingredients(database_text):
+    """
+    Parse the database and count how many available ingredients are fresh.
+    """
+    lines = database_text.strip().split('\n')
+    
+    # Find the blank line that separates ranges from available IDs
+    blank_line_index = lines.index('')
+    
+    # Parse fresh ID ranges
+    fresh_ranges = []
+    for i in range(blank_line_index):
+        start, end = map(int, lines[i].split('-'))
+        fresh_ranges.append((start, end))
+    
+    # Parse available ingredient IDs
+    available_ids = []
+    for i in range(blank_line_index + 1, len(lines)):
+        if lines[i].strip():
+            available_ids.append(int(lines[i].strip()))
+    
+    # Count fresh ingredients
+    fresh_count = 0
+    for ingredient_id in available_ids:
+        if is_fresh(ingredient_id, fresh_ranges):
+            fresh_count += 1
+    
+    return fresh_count
 
-# # Solve the puzzle
-# answer = count_fresh_ingredients(database_text)
-# print(f"Number of fresh ingredients: {answer}")
+# Read input file
+script_dir = Path(__file__).parent
+input_path = script_dir / 'input.txt'
+
+with open(input_path, 'r') as f:
+    database_text = f.read()
+
+# Solve the puzzle
+answer = count_fresh_ingredients(database_text)
+print(f"Number of fresh ingredients: {answer}")
+
+###############################################
+
+## Part two
+
+###############################################
+
 
 from pathlib import Path
 
