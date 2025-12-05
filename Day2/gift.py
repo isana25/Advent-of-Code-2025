@@ -1,66 +1,78 @@
-# from pathlib import Path
+###########################
 
-# def is_invalid_id(num):
-#     """
-#     Check if a number is invalid (made of a sequence repeated twice).
-#     Examples: 55 (5 repeated), 6464 (64 repeated), 123123 (123 repeated)
-#     """
-#     num_str = str(num)
-#     length = len(num_str)
+# Part One
+
+###########################
+
+from pathlib import Path
+
+def is_invalid_id(num):
+    """
+    Check if a number is invalid (made of a sequence repeated twice).
+    Examples: 55 (5 repeated), 6464 (64 repeated), 123123 (123 repeated)
+    """
+    num_str = str(num)
+    length = len(num_str)
     
-#     # Can only be repeated if even length
-#     if length % 2 != 0:
-#         return False
+    # Can only be repeated if even length
+    if length % 2 != 0:
+        return False
     
-#     # Split in half and check if both halves are equal
-#     mid = length // 2
-#     first_half = num_str[:mid]
-#     second_half = num_str[mid:]
+    # Split in half and check if both halves are equal
+    mid = length // 2
+    first_half = num_str[:mid]
+    second_half = num_str[mid:]
     
-#     return first_half == second_half
+    return first_half == second_half
 
-# def find_invalid_ids_in_range(start, end):
-#     """
-#     Find all invalid IDs in a given range.
-#     """
-#     invalid_ids = []
-#     for num in range(start, end + 1):
-#         if is_invalid_id(num):
-#             invalid_ids.append(num)
-#     return invalid_ids
+def find_invalid_ids_in_range(start, end):
+    """
+    Find all invalid IDs in a given range.
+    """
+    invalid_ids = []
+    for num in range(start, end + 1):
+        if is_invalid_id(num):
+            invalid_ids.append(num)
+    return invalid_ids
 
-# def solve_gift_shop(ranges_string):
-#     """
-#     Parse the ranges and find all invalid IDs.
-#     """
-#     # Parse the ranges
-#     ranges = []
-#     for range_str in ranges_string.split(','):
-#         range_str = range_str.strip()
-#         if range_str:
-#             start, end = map(int, range_str.split('-'))
-#             ranges.append((start, end))
+def solve_gift_shop(ranges_string):
+    """
+    Parse the ranges and find all invalid IDs.
+    """
+    # Parse the ranges
+    ranges = []
+    for range_str in ranges_string.split(','):
+        range_str = range_str.strip()
+        if range_str:
+            start, end = map(int, range_str.split('-'))
+            ranges.append((start, end))
     
-#     # Find all invalid IDs
-#     all_invalid_ids = []
-#     for start, end in ranges:
-#         invalid_in_range = find_invalid_ids_in_range(start, end)
-#         all_invalid_ids.extend(invalid_in_range)
+    # Find all invalid IDs
+    all_invalid_ids = []
+    for start, end in ranges:
+        invalid_in_range = find_invalid_ids_in_range(start, end)
+        all_invalid_ids.extend(invalid_in_range)
     
-#     # Calculate sum
-#     total = sum(all_invalid_ids)
-#     return total
+    # Calculate sum
+    total = sum(all_invalid_ids)
+    return total
 
-# # Read input file
-# script_dir = Path(__file__).parent
-# input_path = script_dir / 'input.txt'
+# Read input file
+script_dir = Path(__file__).parent
+input_path = script_dir / 'input.txt'
 
-# with open(input_path, 'r') as f:
-#     ranges_input = f.read().strip()
+with open(input_path, 'r') as f:
+    ranges_input = f.read().strip()
 
-# # Solve the puzzle
-# answer = solve_gift_shop(ranges_input)
-# print(f"Sum of all invalid IDs: {answer}")
+# Solve the puzzle
+answer = solve_gift_shop(ranges_input)
+print(f"Sum of all invalid IDs: {answer}")
+
+###########################
+
+# Part Two
+
+###########################
 
 from pathlib import Path
 
